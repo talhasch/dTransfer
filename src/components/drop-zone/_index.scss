@@ -1,0 +1,14 @@
+.drop-zone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: $gray-200;
+  z-index: -1;
+  background: red;
+
+  &.visible {
+    z-index: 10;
+  }
+}
