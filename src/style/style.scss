@@ -1,0 +1,26 @@
+@import 'bootstrap';
+
+$sm-break: map-get($grid-breakpoints, "sm");
+$md-break: map-get($grid-breakpoints, "md");
+$lg-break: map-get($grid-breakpoints, "lg");
+$xl-break: map-get($grid-breakpoints, "xl");
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+html, body {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  min-width: 320px;
+}
+
+@import '../components/index';
+

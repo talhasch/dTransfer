@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 
+import Bg from './bg';
+
+import '../style/style.scss';
+
 export default class AppPage extends Component {
     render() {
-        return <span>hello from app</span>;
+        return <div className="wrapper">
+            <Bg/>
+        </div>;
     }
 }
