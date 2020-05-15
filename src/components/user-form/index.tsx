@@ -20,7 +20,7 @@ export default class UserForm extends Component {
                                 Add files
                             </div>
                             <div className="select-folder">
-                                Or select a folder
+                                <a href="#">Or select a folder</a>
                             </div>
                         </div>
                     </div>
