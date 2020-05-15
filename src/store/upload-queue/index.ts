@@ -1,11 +1,6 @@
-import {State, Action, SetAction, ActionTypes, Item, ItemStatus} from './types';
-
 import {Dispatch} from 'redux';
 
-const initialState: State = {
-    list: [],
-    inProgress: false
-};
+import {State, initialState, Action, SetAction, ResetAction, ActionTypes, Item, ItemStatus} from './types';
 
 export default (state: State = initialState, action: Action): State => {
     switch (action.type) {
@@ -36,10 +31,20 @@ export const setUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => {
     dispatch(setAct(files));
 };
 
+export const resetUploadQueue = () => (dispatch: Dispatch) => {
+    dispatch(resetAct());
+};
+
 /* Action Creators */
 export const setAct = (files: Array<File>): SetAction => {
     return {
         type: ActionTypes.SET,
         files
     };
+};
+
+export const resetAct = (): ResetAction => {
+    return {
+        type: ActionTypes.RESET,
+    }
 };
