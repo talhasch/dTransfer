@@ -1,5 +1,7 @@
 import {Dispatch} from 'redux';
 
+import {makeFileId} from '../../helper';
+
 import {State, initialState, Action, AddAction, ResetAction, ActionTypes, Item, ItemStatus} from './types';
 
 export default (state: State = initialState, action: Action): State => {
@@ -8,16 +10,11 @@ export default (state: State = initialState, action: Action): State => {
             const {files} = action;
             const {list} = state;
 
-            const newList = files.map((x): Item => (
-                    {
-                        id: `${x.name}-${x.size}-${x.lastModified}`,
-                        obj: x,
-                        status: ItemStatus.READY,
-                        progress: 0
-                    }
-                )
-            );
-            return {...state, list: newList};
+            const newList = files
+                .filter(f => list.find(x => x.id === makeFileId(f)) === undefined) // ignore files that already exist in store
+                .map((x): Item => ({id: makeFileId(x), obj: x, status: ItemStatus.READY, progress: 0}));
+
+            return {...state, list: [...list, ...newList]};
         case ActionTypes.RESET:
             return initialState;
         default: {
