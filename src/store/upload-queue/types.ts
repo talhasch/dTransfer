@@ -1,4 +1,4 @@
-import {IAction} from '../types';
+
 
 export enum ActionTypes {
     SET = '@files/SET',
@@ -24,30 +24,30 @@ export interface ResetAction extends BaseAction {
     type: ActionTypes.RESET;
 }
 
-export interface StartAction extends IAction {
+export interface StartAction extends BaseAction {
     type: ActionTypes.START
 }
 
-export interface FinishAction extends IAction {
+export interface FinishAction extends BaseAction {
     type: ActionTypes.FINISH
 }
 
-export interface ItemStartAction extends IAction {
+export interface ItemStartAction extends BaseAction {
     type: ActionTypes.ITEM_START,
     itemId: number
 }
 
-export interface ItemProgressAction extends IAction {
+export interface ItemProgressAction extends BaseAction {
     type: ActionTypes.ITEM_PROGRESS,
     itemId: number
 }
 
-export interface ItemFinishAction extends IAction {
+export interface ItemFinishAction extends BaseAction {
     type: ActionTypes.ITEM_FINISH,
     itemId: number
 }
 
-export interface ItemErrorAction extends IAction {
+export interface ItemErrorAction extends BaseAction {
     type: ActionTypes.ITEM_ERROR,
     itemId: number
 }
