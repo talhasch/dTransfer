@@ -25,6 +25,8 @@ const combinedReducers = combineReducers({
     uploadQueue
 });
 
+export type AppState = ReturnType<typeof combinedReducers>;
+
 export default createStore(
     combinedReducers,
     initialState,
