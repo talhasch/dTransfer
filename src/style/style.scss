@@ -20,7 +20,8 @@ html, body {
   height: 100%;
   width: 100%;
   min-width: 320px;
+  position: relative;
 }
 
-@import '../components/index';
+@import '../components/bg/index';
 

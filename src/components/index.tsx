@@ -6,8 +6,8 @@ import '../style/style.scss';
 
 export default class AppPage extends Component {
     render() {
-        return <div className="wrapper">
+        return <>
             <Bg/>
-        </div>;
+        </>
     }
 }
