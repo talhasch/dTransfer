@@ -6,7 +6,12 @@
   height: 100%;
   background: $gray-200;
   z-index: -1;
-  background: red;
+  background: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  color: $white;
 
   &.visible {
     z-index: 10;

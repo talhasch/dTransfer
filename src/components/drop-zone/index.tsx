@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-
 export default class DropZone extends Component {
     componentDidMount(): void {
         const root = document.querySelector('#root');
