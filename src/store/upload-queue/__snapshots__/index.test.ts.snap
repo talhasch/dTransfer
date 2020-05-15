@@ -27,7 +27,33 @@ Object {
 }
 `;
 
-exports[`3- reset queue 1`] = `
+exports[`3- add to queue 1`] = `
+Object {
+  "inProgress": false,
+  "list": Array [
+    Object {
+      "id": "document.pdf-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 1,
+    },
+    Object {
+      "id": "sheet.xls-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 1,
+    },
+    Object {
+      "id": "image.jpg-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 1,
+    },
+  ],
+}
+`;
+
+exports[`9- reset queue 1`] = `
 Object {
   "inProgress": false,
   "list": Array [],
