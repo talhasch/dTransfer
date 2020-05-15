@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 interface DropZoneProps {
-    setUploadQueue: (files: Array<File>) => any
+    addToUploadQueue: (files: Array<File>) => any
 }
 
 export default class DropZone extends Component<DropZoneProps> {
@@ -59,7 +59,7 @@ export default class DropZone extends Component<DropZoneProps> {
             files.push(e.dataTransfer.files[i]);
         }
 
-        this.props.setUploadQueue(files);
+        this.props.addToUploadQueue(files);
     };
 
     render() {

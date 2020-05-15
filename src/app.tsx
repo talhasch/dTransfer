@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {AppState} from './store';
 
-import {setUploadQueue} from './store/upload-queue';
+import {addToUploadQueue} from './store/upload-queue';
 
 import AppPage from './components';
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
     bindActionCreators(
         {
-            setUploadQueue
+            addToUploadQueue
         },
         dispatch
     );

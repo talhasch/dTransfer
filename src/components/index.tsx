@@ -9,7 +9,7 @@ import 'typeface-ibm-plex-sans';
 import '../style/style.scss';
 
 interface AppPageProps {
-    setUploadQueue: (files: Array<File>) => any
+    addToUploadQueue: (files: Array<File>) => any
 }
 
 

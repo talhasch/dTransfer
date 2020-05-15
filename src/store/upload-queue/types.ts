@@ -1,7 +1,7 @@
 
 
 export enum ActionTypes {
-    SET = '@files/SET',
+    ADD = '@files/ADD',
     RESET = '@files/RESET',
     START = '@files/START',
     FINISH = '@files/FINISH',
@@ -15,8 +15,8 @@ interface BaseAction {
     type: ActionTypes
 }
 
-export interface SetAction extends BaseAction {
-    type: ActionTypes.SET;
+export interface AddAction extends BaseAction {
+    type: ActionTypes.ADD;
     files: Array<File>;
 }
 
@@ -52,11 +52,11 @@ export interface ItemErrorAction extends BaseAction {
     itemId: number
 }
 
-export type Action = SetAction | ResetAction | ResetAction | StartAction | FinishAction | ItemStartAction | ItemProgressAction | ItemFinishAction | ItemErrorAction;
+export type Action = AddAction | ResetAction | ResetAction | StartAction | FinishAction | ItemStartAction | ItemProgressAction | ItemFinishAction | ItemErrorAction;
 
 
 export interface Item {
-    id: number,
+    id: string,
     obj: File,
     status: ItemStatus,
     progress: number

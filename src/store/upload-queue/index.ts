@@ -1,21 +1,22 @@
 import {Dispatch} from 'redux';
 
-import {State, initialState, Action, SetAction, ResetAction, ActionTypes, Item, ItemStatus} from './types';
+import {State, initialState, Action, AddAction, ResetAction, ActionTypes, Item, ItemStatus} from './types';
 
 export default (state: State = initialState, action: Action): State => {
     switch (action.type) {
-        case ActionTypes.SET:
+        case ActionTypes.ADD:
             const {files} = action;
-            const newList = files.map((x, i): Item => (
+            const {list} = state;
+
+            const newList = files.map((x): Item => (
                     {
-                        id: i,
+                        id: `${x.name}-${x.size}-${x.lastModified}`,
                         obj: x,
                         status: ItemStatus.READY,
                         progress: 0
                     }
                 )
             );
-
             return {...state, list: newList};
         case ActionTypes.RESET:
             return initialState;
@@ -27,8 +28,8 @@ export default (state: State = initialState, action: Action): State => {
 
 
 /* Actions */
-export const setUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => {
-    dispatch(setAct(files));
+export const addToUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => {
+    dispatch(addAct(files));
 };
 
 export const resetUploadQueue = () => (dispatch: Dispatch) => {
@@ -36,9 +37,9 @@ export const resetUploadQueue = () => (dispatch: Dispatch) => {
 };
 
 /* Action Creators */
-export const setAct = (files: Array<File>): SetAction => {
+export const addAct = (files: Array<File>): AddAction => {
     return {
-        type: ActionTypes.SET,
+        type: ActionTypes.ADD,
         files
     };
 };
