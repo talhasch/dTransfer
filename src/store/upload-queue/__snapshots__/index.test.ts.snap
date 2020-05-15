@@ -7,18 +7,18 @@ Object {
 }
 `;
 
-exports[`2- set queue 1`] = `
+exports[`2- add to queue 1`] = `
 Object {
   "inProgress": false,
   "list": Array [
     Object {
-      "id": 0,
+      "id": "document.pdf-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
     },
     Object {
-      "id": 1,
+      "id": "sheet.xls-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,

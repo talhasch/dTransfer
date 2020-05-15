@@ -1,5 +1,5 @@
 import reducer, {
-    setAct,
+    addAct,
     resetAct
 } from "./index";
 
@@ -11,13 +11,13 @@ it('1- default state', () => {
     expect(state).toMatchSnapshot();
 });
 
-it('2- set queue', () => {
+it('2- add to queue', () => {
     const files = [
         new File([new ArrayBuffer(10)], 'document.pdf'),
         new File([new ArrayBuffer(10)], 'sheet.xls')
     ];
 
-    state = reducer(state, setAct(files));
+    state = reducer(state, addAct(files));
     expect(state).toMatchSnapshot();
 });
 
