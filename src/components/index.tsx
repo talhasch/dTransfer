@@ -8,8 +8,14 @@ import 'typeface-ibm-plex-sans';
 
 import '../style/style.scss';
 
-export default class AppPage extends Component {
+interface AppPageProps {
+    setUploadQueue: (files: Array<File>) => any
+}
+
+
+export default class AppPage extends Component<AppPageProps> {
     render() {
+
         return <>
             <DropZone {...this.props} />
             <Bg {...this.props} />

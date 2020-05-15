@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
-export default class DropZone extends Component {
+interface DropZoneProps {
+    setUploadQueue: (files: Array<File>) => any
+}
+
+export default class DropZone extends Component<DropZoneProps> {
     componentDidMount(): void {
         const root = document.querySelector('#root');
         if (!root) return;
@@ -46,13 +50,16 @@ export default class DropZone extends Component {
         e.stopPropagation();
         this.sentToBack();
 
-        const {files} = e.dataTransfer;
-
-        if (files.length === 0) {
+        if (e.dataTransfer.files.length === 0) {
             return;
         }
 
-        console.log(files)
+        const files: Array<File> = [];
+        for (let i = 0; i < e.dataTransfer.files.length; i++) {
+            files.push(e.dataTransfer.files[i]);
+        }
+
+        this.props.setUploadQueue(files);
     };
 
     render() {
