@@ -11,6 +11,7 @@ import UploaderForm from './upload-form';
 
 interface UserFormProps {
     addToUploadQueue: (files: Array<File>) => any,
+    deleteUploadQueueItem: (id: string) => any,
     uploadQueue: UploadQueueState
 }
 

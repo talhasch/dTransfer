@@ -11,6 +11,7 @@ import '../style/style.scss';
 
 interface AppPageProps {
     addToUploadQueue: (files: Array<File>) => any,
+    deleteUploadQueueItem: (id: string) => any,
     uploadQueue: UploadQueueState
 }
 
