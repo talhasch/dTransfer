@@ -41,6 +41,10 @@ export default class UserForm extends Component<UserFormProps> {
     };
 
     handleFiles = (list: FileList) => {
+        if (list.length === 0) {
+            return;
+        }
+
         const files: Array<File> = [];
         for (let i = 0; i < list.length; i++) {
             files.push(list[i]);
