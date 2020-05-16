@@ -9,22 +9,24 @@ import {upload} from '../../backend';
 import {AppState} from '../index';
 
 import {
+    State,
     Actions,
     ActionTypes,
-
-    initialState,
     Item,
-    ItemDeleteAction,
-    ItemProgressAction,
-    ItemStartAction,
-    ItemFinishAction,
     ItemStatus,
-
     AddAction,
     StartAction,
     FinishAction,
-    State
+    ItemDeleteAction,
+    ItemProgressAction,
+    ItemStartAction,
+    ItemFinishAction
 } from './types';
+
+export const initialState: State = {
+    list: [],
+    inProgress: false
+};
 
 export default (state: State = initialState, action: Actions): State => {
     switch (action.type) {

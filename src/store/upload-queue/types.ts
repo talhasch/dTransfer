@@ -77,7 +77,3 @@ export interface State {
     inProgress: boolean
 }
 
-export const initialState: State = {
-    list: [],
-    inProgress: false
-};
