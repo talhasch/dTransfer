@@ -6,12 +6,56 @@ import {Button} from 'react-bootstrap';
 
 import plusSvg from '../../images/plus.svg';
 
-export default class UserForm extends Component {
+interface UserFormProps {
+    addToUploadQueue: (files: Array<File>) => any
+}
+
+type FileInputEvent = React.FormEvent & { target: { files: FileList } };
+
+export default class UserForm extends Component<UserFormProps> {
+
+    openFileInput = () => {
+        const el: HTMLInputElement | null = document.querySelector('#file-input');
+        if (!el) return;
+        el.click();
+    };
+
+    openFolderInput = () => {
+        const el: HTMLInputElement | null = document.querySelector('#folder-input');
+        if (!el) return;
+        el.click();
+    };
+
+    folderInputChanged = (e: FileInputEvent) => {
+        const files: FileList = e.target.files;
+        this.handleFiles(files);
+    };
+
+    fileInputChanged = (e: FileInputEvent) => {
+        const files: FileList = e.target.files;
+        this.handleFiles(files);
+    };
+
+    handleFiles = (list: FileList) => {
+        const files: Array<File> = [];
+        for (let i = 0; i < list.length; i++) {
+            files.push(list[i]);
+        }
+
+        this.props.addToUploadQueue(files);
+    };
+
     render() {
+
+        // @ts-ignore
+        const fileInput = <input type="file" id="file-input" multiple onChange={this.fileInputChanged}/>;
+        // @ts-ignore
+        const folderInput = <input type="file" id="folder-input" directory="" webkitdirectory="" onChange={this.folderInputChanged}/>;
+
         return (
             <div className="user-form">
                 <div className="upload-form">
-                    <div className="form-controls">
+                    <div className="form-controls" onClick={this.openFileInput}>
                         <div className="button-control">
                             <Button variant="primary" size="sm">
                                 <img src={plusSvg} alt="Plus"/>
@@ -22,7 +66,11 @@ export default class UserForm extends Component {
                                 Add files
                             </div>
                             <div className="select-folder">
-                                <a href="#">Or select a folder</a>
+                                <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    this.openFolderInput();
+                                }}>Or select a folder</a>
                             </div>
                         </div>
                     </div>
@@ -30,6 +78,9 @@ export default class UserForm extends Component {
                         <Button variant="secondary" disabled>Upload</Button>
                     </div>
                 </div>
+
+                {fileInput}
+                {folderInput}
             </div>
         )
     }

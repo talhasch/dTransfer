@@ -11,6 +11,7 @@
 
   .upload-form {
     padding: 30px 20px;
+    cursor: pointer;
 
     .form-controls {
       margin-bottom: 30px;
@@ -37,6 +38,7 @@
 
         .select-folder {
           font-weight: 300;
+
           a {
             color: $gray-800;
             text-decoration: underline;
@@ -53,6 +55,11 @@
     .upload-button {
       margin-left: 62px;
     }
+  }
+
+
+  input[type=file] {
+    display: none;
   }
 }
 
