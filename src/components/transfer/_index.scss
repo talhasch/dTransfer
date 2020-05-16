@@ -14,41 +14,7 @@
     overflow-x: auto;
   }
 
-  .uploader-form {
-    padding: 30px 0;
-    cursor: pointer;
-    position: relative;
-    line-height: 100%;
-    border-bottom: 1px solid $gray-100;
 
-    .btn-select-files {
-      position: absolute;
-      left: 18px;
-      top: 36px;
-    }
-
-    .select-files {
-      font-size: 22px;
-      margin-bottom: 3px;
-      font-weight: 400;
-      color: $gray-800;
-    }
-
-    .select-folders {
-      color: $gray-800;
-      text-decoration: underline;
-      font-size: 14px;
-      font-weight: 300;
-
-      &:hover {
-        color: $primary;
-      }
-    }
-
-    .select-files, .select-folders {
-      margin-left: 76px;
-    }
-  }
 
   .transfer-action {
     padding: 10px 0;
