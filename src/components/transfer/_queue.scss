@@ -1,19 +1,51 @@
 .queue {
   margin-bottom: 10px;
-  padding: 0 12px;
+  padding: 0 14px;
   border-bottom: 1px solid $gray-200;
   background: $gray-100;
-  max-height: 300px;
+  max-height: 294px;
   overflow-x: auto;
 
   .item {
-    display: flex;
-    padding: 6px 12px;
+    padding: 6px 0;
+    position: relative;
 
-    .item-info {
-      .item-name {
-        font-weight: 300;
-        font-size: 13px;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid darken($gray-100, 2);
+    }
+
+    .item-name {
+      font-weight: 300;
+      font-size: 14px;
+      margin-bottom: 1px;
+      color: $gray-900;
+    }
+
+    .item-size {
+      font-weight: 300;
+      font-size: 12px;
+      color: $gray-600;
+    }
+
+    .item-name, .item-size {
+      margin-right: 60px;
+    }
+
+    .item-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      background: red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+
+      .item-control {
+        svg {
+
+        }
       }
     }
   }
