@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+type SkynetResponse = {
+    skylink: string,
+    merkleroot: string,
+    bitfield: number
+}
 
 export const upload = async (buffer: ArrayBuffer, fileName: string, onProgress: (p: number) => void): Promise<string> => {
     const formData = new FormData();
@@ -14,8 +19,8 @@ export const upload = async (buffer: ArrayBuffer, fileName: string, onProgress: 
             onProgress(percentCompleted);
         }
     }).then(r => {
-        const resp = r.data;
+        const resp: SkynetResponse = r.data;
 
-        return `https://siasky.net/${resp.skylink}`;
+        return resp.skylink;
     });
 };

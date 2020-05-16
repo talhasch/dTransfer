@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import fileSize from 'filesize';
 
-import {State as UploadQueueState, Item} from '../../store/upload-queue/types';
+import {Item, ItemStatus, State as UploadQueueState} from '../../store/upload-queue/types';
 
 import {closeSvg} from '../../svg';
 
@@ -20,7 +20,7 @@ export default class Queue extends Component<QueueProps> {
 
     render() {
         const {uploadQueue} = this.props;
-        const {list} = uploadQueue;
+        const {list, inProgress} = uploadQueue;
         if (list.length === 0) {
             return null;
         }
@@ -34,10 +34,35 @@ export default class Queue extends Component<QueueProps> {
                         <div className="item-name">{i.obj.name}</div>
                         <div className="item-size">{fileSize(i.obj.size)}</div>
                         <div className="item-controls">
-                            <div className="item-control item-control-delete"
-                                 onClick={() => {
-                                     this.delete(i);
-                                 }}>{closeSvg}</div>
+
+                            {(() => {
+                                if (i.status === ItemStatus.READY) {
+                                    if (!inProgress) {
+                                        return <div
+                                            className="item-control item-control-delete"
+                                            onClick={() => {
+                                                this.delete(i);
+                                            }}>{closeSvg}</div>
+                                    }
+                                }
+
+                                if (i.status === ItemStatus.IN_PROGRESS) {
+                                    if (i.progress === 100) {
+                                        return "processing"
+                                    }
+                                }
+
+                                if (i.status === ItemStatus.DONE) {
+
+                                }
+
+                                if (i.status === ItemStatus.ERROR) {
+
+                                }
+
+                                return null;
+                            })()}
+
                         </div>
                     </div>
                 </div>
