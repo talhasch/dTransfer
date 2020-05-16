@@ -57,9 +57,11 @@ export default class UploadForm extends Component<UploadFormProps> {
 
         return (
             <div className="upload-form" onClick={this.openFileInput}>
-                <Button variant="primary" size="sm" className="btn-select-files">
-                    <img src={plusSvg} alt="Plus"/>
-                </Button>
+                <div>
+                    <Button variant="primary" size="sm" className="btn-select-files">
+                        <img src={plusSvg} alt="Plus"/>
+                    </Button>
+                </div>
                 <div className="text-controls">
                     <span className="select-files">
                         Add files
