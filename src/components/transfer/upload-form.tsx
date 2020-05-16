@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 
 import {Button} from 'react-bootstrap';
 
-import plusSvg from '../../images/plus.svg';
+import {plusSvg} from '../../svg';
 
 interface UploadFormProps {
     addToUploadQueue: (files: Array<File>) => any
@@ -59,7 +59,7 @@ export default class UploadForm extends Component<UploadFormProps> {
             <div className="upload-form" onClick={this.openFileInput}>
                 <div>
                     <Button variant="primary" size="sm" className="btn-select-files">
-                        <img src={plusSvg} alt="Plus"/>
+                        {plusSvg}
                     </Button>
                 </div>
                 <div className="text-controls">
