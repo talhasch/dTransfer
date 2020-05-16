@@ -58,7 +58,9 @@ export interface Item {
     id: string,
     obj: File,
     status: ItemStatus,
-    progress: number
+    progress: number,
+    error: string,
+    url: string
 }
 
 export enum ItemStatus {

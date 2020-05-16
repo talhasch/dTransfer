@@ -12,16 +12,20 @@ Object {
   "inProgress": false,
   "list": Array [
     Object {
+      "error": "",
       "id": "document.pdf-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
+      "url": "",
     },
     Object {
+      "error": "",
       "id": "sheet.xls-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
+      "url": "",
     },
   ],
 }
@@ -32,22 +36,28 @@ Object {
   "inProgress": false,
   "list": Array [
     Object {
+      "error": "",
       "id": "document.pdf-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
+      "url": "",
     },
     Object {
+      "error": "",
       "id": "sheet.xls-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
+      "url": "",
     },
     Object {
+      "error": "",
       "id": "image.jpg-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
+      "url": "",
     },
   ],
 }
@@ -58,16 +68,20 @@ Object {
   "inProgress": false,
   "list": Array [
     Object {
+      "error": "",
       "id": "document.pdf-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
+      "url": "",
     },
     Object {
+      "error": "",
       "id": "image.jpg-10-1589567882559",
       "obj": File {},
       "progress": 0,
       "status": 1,
+      "url": "",
     },
   ],
 }

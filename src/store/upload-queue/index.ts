@@ -12,7 +12,7 @@ export default (state: State = initialState, action: Action): State => {
 
             const newList = files
                 .filter(f => list.find(x => x.id === makeFileId(f)) === undefined) // ignore files that already exist in store
-                .map((x): Item => ({id: makeFileId(x), obj: x, status: ItemStatus.READY, progress: 0}));
+                .map((x): Item => ({id: makeFileId(x), obj: x, status: ItemStatus.READY, progress: 0, error: '', url: ''}));
 
             return {...state, list: [...list, ...newList]};
         }
