@@ -1,10 +1,8 @@
-
-
 export enum ActionTypes {
     ADD = '@files/ADD',
-    RESET = '@files/RESET',
     START = '@files/START',
     FINISH = '@files/FINISH',
+    ITEM_DELETE = '@files/ITEM_DELETE',
     ITEM_START = '@files/ITEM_START',
     ITEM_PROGRESS = '@files/ITEM_PROGRESS',
     ITEM_FINISH = '@files/ITEM_FINISH',
@@ -20,10 +18,6 @@ export interface AddAction extends BaseAction {
     files: Array<File>;
 }
 
-export interface ResetAction extends BaseAction {
-    type: ActionTypes.RESET;
-}
-
 export interface StartAction extends BaseAction {
     type: ActionTypes.START
 }
@@ -32,27 +26,32 @@ export interface FinishAction extends BaseAction {
     type: ActionTypes.FINISH
 }
 
+export interface ItemDeleteAction extends BaseAction {
+    type: ActionTypes.ITEM_DELETE,
+    id: string
+}
+
 export interface ItemStartAction extends BaseAction {
     type: ActionTypes.ITEM_START,
-    itemId: number
+    id: string
 }
 
 export interface ItemProgressAction extends BaseAction {
     type: ActionTypes.ITEM_PROGRESS,
-    itemId: number
+    id: string
 }
 
 export interface ItemFinishAction extends BaseAction {
     type: ActionTypes.ITEM_FINISH,
-    itemId: number
+    id: string
 }
 
 export interface ItemErrorAction extends BaseAction {
     type: ActionTypes.ITEM_ERROR,
-    itemId: number
+    id: string
 }
 
-export type Action = AddAction | ResetAction | ResetAction | StartAction | FinishAction | ItemStartAction | ItemProgressAction | ItemFinishAction | ItemErrorAction;
+export type Action = AddAction | StartAction | FinishAction | ItemDeleteAction | ItemStartAction | ItemProgressAction | ItemFinishAction | ItemErrorAction;
 
 
 export interface Item {

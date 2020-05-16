@@ -2,11 +2,11 @@ import {Dispatch} from 'redux';
 
 import {makeFileId} from '../../helper';
 
-import {State, initialState, Action, AddAction, ResetAction, ActionTypes, Item, ItemStatus} from './types';
+import {State, initialState, Action, AddAction, ItemDeleteAction, ActionTypes, Item, ItemStatus} from './types';
 
 export default (state: State = initialState, action: Action): State => {
     switch (action.type) {
-        case ActionTypes.ADD:
+        case ActionTypes.ADD: {
             const {files} = action;
             const {list} = state;
 
@@ -15,8 +15,13 @@ export default (state: State = initialState, action: Action): State => {
                 .map((x): Item => ({id: makeFileId(x), obj: x, status: ItemStatus.READY, progress: 0}));
 
             return {...state, list: [...list, ...newList]};
-        case ActionTypes.RESET:
-            return initialState;
+        }
+        case ActionTypes.ITEM_DELETE: {
+            const {list} = state;
+            const {id} = action;
+
+            return {...state, list: [...list.filter(x => x.id !== id)]};
+        }
         default: {
             return state;
         }
@@ -29,8 +34,8 @@ export const addToUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => 
     dispatch(addAct(files));
 };
 
-export const resetUploadQueue = () => (dispatch: Dispatch) => {
-    dispatch(resetAct());
+export const deleteUploadQueueItem = (id: string) => (dispatch: Dispatch) => {
+    dispatch(deleteItemAct(id));
 };
 
 /* Action Creators */
@@ -41,8 +46,9 @@ export const addAct = (files: Array<File>): AddAction => {
     };
 };
 
-export const resetAct = (): ResetAction => {
+export const deleteItemAct = (id: string): ItemDeleteAction => {
     return {
-        type: ActionTypes.RESET,
+        type: ActionTypes.ITEM_DELETE,
+        id
     }
 };
