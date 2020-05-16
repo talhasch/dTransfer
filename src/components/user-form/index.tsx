@@ -4,10 +4,14 @@ import React, {Component} from 'react';
 
 import {Button} from 'react-bootstrap';
 
+import {State as UploadQueueState} from '../../store/upload-queue/types';
+
 import plusSvg from '../../images/plus.svg';
 
+
 interface UserFormProps {
-    addToUploadQueue: (files: Array<File>) => any
+    addToUploadQueue: (files: Array<File>) => any,
+    uploadQueue: UploadQueueState
 }
 
 type FileInputEvent = React.FormEvent & { target: { files: FileList } };
@@ -46,7 +50,6 @@ export default class UserForm extends Component<UserFormProps> {
     };
 
     render() {
-
         // @ts-ignore
         const fileInput = <input type="file" id="file-input" multiple onChange={this.fileInputChanged}/>;
         // @ts-ignore
