@@ -135,38 +135,6 @@ export const startUploadQueue = () => async (dispatch: Dispatch, getState: () =>
     }
 
     dispatch(finishAct());
-
-    // Couldn't read file
-    // Upload error
-
-    /*
-    while (true) {
-        const {uploadQueue: queue} = getState();
-        const item = queue.list.find(x => x.status === ItemStatus.READY);
-        if (item === undefined) {
-            break;
-        }
-
-        dispatch(itemStartAct(item.id));
-        let buffer;
-
-        try {
-            buffer = await readFileBuffer(item.obj);
-        } catch (e) {
-            console.log(e)
-            continue;
-        }
-
-
-
-        const url = await upload(buffer, item.obj.name, (progress) => {
-            dispatch(itemProgressAct(item.id, progress));
-        }); // TODO: try-catch
-
-        console.log(url)
-    }
-
-     */
 };
 
 export const deleteUploadQueueItem = (id: string) => (dispatch: Dispatch) => {

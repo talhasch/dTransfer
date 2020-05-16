@@ -17,8 +17,9 @@ interface UserFormProps {
 }
 
 export default class Transfer extends Component<UserFormProps> {
-    start = () => {
-        this.props.startUploadQueue();
+    start = async () => {
+        await this.props.startUploadQueue();
+        // console.log("done")
     };
 
     render() {
