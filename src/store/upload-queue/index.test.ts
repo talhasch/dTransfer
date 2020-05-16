@@ -1,6 +1,7 @@
 import reducer, {
     addAct,
-    deleteItemAct
+    deleteItemAct,
+    startAct
 } from "./index";
 
 import {State, initialState} from './types';
@@ -36,5 +37,10 @@ it('3- add to queue', () => {
 
 it('4- delete item from queue', () => {
     state = reducer(state, deleteItemAct('sheet.xls-10-1589567882559'));
+    expect(state).toMatchSnapshot();
+});
+
+it('5- start', () => {
+    state = reducer(state, startAct());
     expect(state).toMatchSnapshot();
 });
