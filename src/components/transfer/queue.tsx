@@ -27,14 +27,18 @@ export default class Queue extends Component<QueueProps> {
 
         return <div className="queue">
             {list.map((i) => {
+                const progress = `${i.progress}%`;
                 return <div key={i.id} className="item">
-                    <div className="item-name">{i.obj.name}</div>
-                    <div className="item-size">{fileSize(i.obj.size)}</div>
-                    <div className="item-controls">
-                        <div className="item-control item-control-delete"
-                             onClick={() => {
-                                 this.delete(i);
-                             }}>{closeSvg}</div>
+                    <div className="item-progress" style={{width: progress}}/>
+                    <div className="item-content">
+                        <div className="item-name">{i.obj.name}</div>
+                        <div className="item-size">{fileSize(i.obj.size)}</div>
+                        <div className="item-controls">
+                            <div className="item-control item-control-delete"
+                                 onClick={() => {
+                                     this.delete(i);
+                                 }}>{closeSvg}</div>
+                        </div>
                     </div>
                 </div>
             })}

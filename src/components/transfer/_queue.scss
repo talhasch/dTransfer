@@ -6,6 +6,8 @@
   max-height: 294px;
   overflow-x: auto;
   cursor: default;
+  position: relative;
+
 
   .item {
     padding: 6px 0;
@@ -15,52 +17,67 @@
       border-bottom: 1px solid darken($gray-100, 2);
     }
 
-    .item-name {
-      font-weight: 300;
-      font-size: 14px;
-      margin-bottom: 1px;
-      color: $gray-900;
-    }
-
-    .item-size {
-      font-weight: 300;
-      font-size: 12px;
-      color: $gray-600;
-    }
-
-    .item-name, .item-size {
-      margin-right: 30px;
-    }
-
-    .item-controls {
+    .item-progress {
       position: absolute;
-      top: 0;
-      right: 10px;
-      height: 100%;
-      width: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      left: 0;
+      bottom: 0;
+      height: 4px;
+      background: $primary;
+      opacity: 0.6;
+      z-index: 1;
+    }
 
-      .item-control {
-        color: $primary;
-        cursor: pointer;
+    .item-content {
+      position: relative;
+      z-index: 2;
 
-        svg {
-          width: 20px;
-          height: 20px;
+      .item-name {
+        font-weight: 300;
+        font-size: 14px;
+        margin-bottom: 1px;
+        color: $gray-900;
+      }
+
+      .item-size {
+        font-weight: 300;
+        font-size: 12px;
+        color: $gray-600;
+      }
+
+      .item-name, .item-size {
+        margin-right: 30px;
+      }
+
+      .item-controls {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        height: 100%;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .item-control {
+          color: $primary;
+          cursor: pointer;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .item-control-delete {
+          display: none;
         }
       }
 
-      .item-control-delete {
-        display: none;
-      }
-    }
-
-    &:hover {
-      .item-controls {
-        .item-control-delete {
-          display: block;
+      &:hover {
+        .item-controls {
+          .item-control-delete {
+            display: block;
+          }
         }
       }
     }
