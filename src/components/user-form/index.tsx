@@ -54,6 +54,9 @@ export default class UserForm extends Component<UserFormProps> {
     };
 
     render() {
+        const {uploadQueue} = this.props;
+        const buttonDisabled = uploadQueue.list.length === 0;
+
         // @ts-ignore
         const fileInput = <input type="file" id="file-input" multiple onChange={this.fileInputChanged}/>;
         // @ts-ignore
@@ -82,7 +85,7 @@ export default class UserForm extends Component<UserFormProps> {
                         </div>
                     </div>
                     <div className="upload-button">
-                        <Button variant="secondary" disabled>Upload</Button>
+                        <Button variant={buttonDisabled ? 'secondary' : 'primary'} disabled={buttonDisabled}>Upload</Button>
                     </div>
                 </div>
 
