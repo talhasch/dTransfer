@@ -60,14 +60,16 @@ export default class UploadForm extends Component<UploadFormProps> {
                 <Button variant="primary" size="sm" className="btn-select-files">
                     <img src={plusSvg} alt="Plus"/>
                 </Button>
-                <h2 className="select-files">
-                    Add files
-                </h2>
-                <a className="select-folders" href="#" onClick={(e: React.MouseEvent<HTMLElement>) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.openFolderInput();
-                }}>Or select folders</a>
+                <div className="text-controls">
+                    <span className="select-files">
+                        Add files
+                    </span>
+                    <a className="select-folders" href="#" onClick={(e: React.MouseEvent<HTMLElement>) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.openFolderInput();
+                    }}>or select folders</a>
+                </div>
                 {fileInput}
                 {folderInput}
             </div>

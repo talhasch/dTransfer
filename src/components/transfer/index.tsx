@@ -17,8 +17,7 @@ interface UserFormProps {
 export default class Transfer extends Component<UserFormProps> {
     render() {
         const {uploadQueue} = this.props;
-
-
+        
         return (
             <div className="transfer">
                 <div className="scroll-content">
