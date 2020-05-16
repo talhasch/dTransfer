@@ -6,6 +6,8 @@ import {Button} from 'react-bootstrap';
 
 import {State as UploadQueueState} from '../../store/upload-queue/types';
 
+import Queue from './queue';
+
 import plusSvg from '../../images/plus.svg';
 
 
@@ -64,6 +66,8 @@ export default class UserForm extends Component<UserFormProps> {
 
         return (
             <div className="user-form">
+                <Queue {...this.props} />
+
                 <div className="upload-controls">
                     <div className="source-selectors" onClick={this.openFileInput}>
                         <div className="button-file-selector">
