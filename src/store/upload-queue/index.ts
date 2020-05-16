@@ -2,9 +2,13 @@ import {Dispatch} from 'redux';
 
 import {makeFileId, readFileBuffer} from '../../helper';
 
+import {arrayChunk} from '../../util';
+
+import {upload} from '../../backend';
+
 import {AppState} from '../index';
 
-import {Action, ActionTypes, AddAction, initialState, Item, ItemDeleteAction, ItemStartAction, ItemStatus, StartAction, State} from './types';
+import {Action, ActionTypes, AddAction, initialState, Item, ItemDeleteAction, ItemProgressAction, ItemStartAction, ItemStatus, StartAction, FinishAction, State} from './types';
 
 export default (state: State = initialState, action: Action): State => {
     switch (action.type) {
@@ -21,6 +25,9 @@ export default (state: State = initialState, action: Action): State => {
         case ActionTypes.START: {
             return {...state, inProgress: true};
         }
+        case ActionTypes.FINISH: {
+            return {...state, inProgress: false};
+        }
         case ActionTypes.ITEM_DELETE: {
             const {list} = state;
             const {id} = action;
@@ -31,11 +38,15 @@ export default (state: State = initialState, action: Action): State => {
             const {list} = state;
             const {id} = action;
 
-            const newList = list.map(x => {
-                if (x.id !== id) return x;
+            const newList = list.map(x => x.id === id ? {...x, status: ItemStatus.IN_PROGRESS} : x);
 
-                return {...x, status: ItemStatus.IN_PROGRESS}
-            });
+            return {...state, list: [...newList]};
+        }
+        case ActionTypes.ITEM_PROGRESS: {
+            const {list} = state;
+            const {id, val} = action;
+
+            const newList = list.map(x => x.id === id ? {...x, progress: val} : x);
 
             return {...state, list: [...newList]};
         }
@@ -52,8 +63,25 @@ export const addToUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => 
 };
 
 export const startUploadQueue = () => async (dispatch: Dispatch, getState: () => AppState) => {
-    dispatch(startAct());
 
+    const uploadItem = async (item: Item) => {
+        // dispatch(itemStartAct(item.id));
+        console.log(item)
+    };
+
+    dispatch(startAct());
+    const {uploadQueue: queue} = getState();
+
+    const chunks: Array<Array<Item>> = arrayChunk(queue.list, 4);
+
+    for (let x = 0; x < chunks.length; x++) {
+        const ps = chunks[x].map(x => uploadItem(x).catch(x => x));
+        await Promise.all(ps);
+    }
+
+    dispatch(finishAct());
+
+    /*
     while (true) {
         const {uploadQueue: queue} = getState();
         const item = queue.list.find(x => x.status === ItemStatus.READY);
@@ -62,9 +90,25 @@ export const startUploadQueue = () => async (dispatch: Dispatch, getState: () =>
         }
 
         dispatch(itemStartAct(item.id));
+        let buffer;
 
-        const buffer = readFileBuffer(item.obj);
+        try {
+            buffer = await readFileBuffer(item.obj);
+        } catch (e) {
+            console.log(e)
+            continue;
+        }
+
+
+
+        const url = await upload(buffer, item.obj.name, (progress) => {
+            dispatch(itemProgressAct(item.id, progress));
+        }); // TODO: try-catch
+
+        console.log(url)
     }
+
+     */
 };
 
 export const deleteUploadQueueItem = (id: string) => (dispatch: Dispatch) => {
@@ -85,6 +129,13 @@ export const startAct = (): StartAction => {
     }
 };
 
+export const finishAct = (): FinishAction => {
+    return {
+        type: ActionTypes.FINISH
+    }
+};
+
+
 export const itemDeleteAct = (id: string): ItemDeleteAction => {
     return {
         type: ActionTypes.ITEM_DELETE,
@@ -96,6 +147,14 @@ export const itemStartAct = (id: string): ItemStartAction => {
     return {
         type: ActionTypes.ITEM_START,
         id
+    }
+};
+
+export const itemProgressAct = (id: string, val: number): ItemProgressAction => {
+    return {
+        type: ActionTypes.ITEM_PROGRESS,
+        id,
+        val
     }
 };
 

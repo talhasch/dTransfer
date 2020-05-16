@@ -38,7 +38,8 @@ export interface ItemStartAction extends BaseAction {
 
 export interface ItemProgressAction extends BaseAction {
     type: ActionTypes.ITEM_PROGRESS,
-    id: string
+    id: string,
+    val: number
 }
 
 export interface ItemFinishAction extends BaseAction {

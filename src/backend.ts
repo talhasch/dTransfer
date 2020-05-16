@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-export const upload = async (buffer: ArrayBuffer, fileName: string): Promise<string> => {
+export const upload = async (buffer: ArrayBuffer, fileName: string, onProgress: (p: number) => void): Promise<string> => {
     const formData = new FormData();
     formData.append('file', new File([buffer], fileName));
 
@@ -9,9 +9,9 @@ export const upload = async (buffer: ArrayBuffer, fileName: string): Promise<str
         headers: {
             'Content-Type': 'multipart/form-data'
         },
-        onUploadProgress: (e) => {
+        onUploadProgress: (e: ProgressEvent) => {
             const percentCompleted = Math.round((e.loaded * 100) / e.total);
-            console.log(percentCompleted)
+            onProgress(percentCompleted);
         }
     }).then(r => {
         const resp = r.data;

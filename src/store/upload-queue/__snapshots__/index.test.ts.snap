@@ -134,3 +134,51 @@ Object {
   ],
 }
 `;
+
+exports[`7- item progress 1`] = `
+Object {
+  "inProgress": true,
+  "list": Array [
+    Object {
+      "error": "",
+      "id": "image.jpg-10-1589567882559",
+      "obj": File {},
+      "progress": 11,
+      "status": 2,
+      "url": "",
+    },
+    Object {
+      "error": "",
+      "id": "document.pdf-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 1,
+      "url": "",
+    },
+  ],
+}
+`;
+
+exports[`52- finish 1`] = `
+Object {
+  "inProgress": false,
+  "list": Array [
+    Object {
+      "error": "",
+      "id": "image.jpg-10-1589567882559",
+      "obj": File {},
+      "progress": 11,
+      "status": 2,
+      "url": "",
+    },
+    Object {
+      "error": "",
+      "id": "document.pdf-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 1,
+      "url": "",
+    },
+  ],
+}
+`;

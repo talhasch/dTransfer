@@ -2,7 +2,9 @@ import reducer, {
     addAct,
     itemDeleteAct,
     startAct,
-    itemStartAct
+    finishAct,
+    itemStartAct,
+    itemProgressAct
 } from "./index";
 
 import {State, initialState} from './types';
@@ -48,5 +50,16 @@ it('5- start', () => {
 
 it('6- item start', () => {
     state = reducer(state, itemStartAct('image.jpg-10-1589567882559'));
+    expect(state).toMatchSnapshot();
+});
+
+it('7- item progress', () => {
+    state = reducer(state, itemProgressAct('image.jpg-10-1589567882559', 11));
+    expect(state).toMatchSnapshot();
+});
+
+
+it('52- finish', () => {
+    state = reducer(state, finishAct());
     expect(state).toMatchSnapshot();
 });
