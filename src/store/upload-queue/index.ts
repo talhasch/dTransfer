@@ -10,11 +10,11 @@ export default (state: State = initialState, action: Action): State => {
             const {files} = action;
             const {list} = state;
 
-            const newList = files
+            const newItems = files
                 .filter(f => list.find(x => x.id === makeFileId(f)) === undefined) // ignore files that already exist in store
                 .map((x): Item => ({id: makeFileId(x), obj: x, status: ItemStatus.READY, progress: 0, error: '', url: ''}));
 
-            return {...state, list: [...list, ...newList]};
+            return {...state, list: [...newItems, ...list]};
         }
         case ActionTypes.ITEM_DELETE: {
             const {list} = state;
