@@ -18,7 +18,7 @@ interface UserFormProps {
 
 type FileInputEvent = React.FormEvent & { target: { files: FileList } };
 
-export default class UserForm extends Component<UserFormProps> {
+export default class Transfer extends Component<UserFormProps> {
 
     openFileInput = () => {
         const el: HTMLInputElement | null = document.querySelector('#file-input');
@@ -65,7 +65,7 @@ export default class UserForm extends Component<UserFormProps> {
         const folderInput = <input type="file" id="folder-input" directory="" webkitdirectory="" onChange={this.folderInputChanged}/>;
 
         return (
-            <div className="user-form">
+            <div className="transfer">
                 <Queue {...this.props} />
 
                 <div className="upload-controls">
