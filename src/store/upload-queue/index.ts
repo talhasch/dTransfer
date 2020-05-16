@@ -8,9 +8,25 @@ import {upload} from '../../backend';
 
 import {AppState} from '../index';
 
-import {Action, ActionTypes, AddAction, initialState, Item, ItemDeleteAction, ItemProgressAction, ItemStartAction, ItemStatus, StartAction, FinishAction, State} from './types';
+import {
+    Actions,
+    ActionTypes,
 
-export default (state: State = initialState, action: Action): State => {
+    initialState,
+    Item,
+    ItemDeleteAction,
+    ItemProgressAction,
+    ItemStartAction,
+    ItemFinishAction,
+    ItemStatus,
+
+    AddAction,
+    StartAction,
+    FinishAction,
+    State
+} from './types';
+
+export default (state: State = initialState, action: Actions): State => {
     switch (action.type) {
         case ActionTypes.ADD: {
             const {files} = action;
@@ -50,6 +66,14 @@ export default (state: State = initialState, action: Action): State => {
 
             return {...state, list: [...newList]};
         }
+        case ActionTypes.ITEM_FINISH: {
+            const {list} = state;
+            const {id} = action;
+
+            const newList = list.map(x => x.id === id ? {...x, status: ItemStatus.DONE} : x);
+
+            return {...state, list: [...newList]};
+        }
         default: {
             return state;
         }
@@ -65,8 +89,10 @@ export const addToUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => 
 export const startUploadQueue = () => async (dispatch: Dispatch, getState: () => AppState) => {
 
     const uploadItem = async (item: Item) => {
-        // dispatch(itemStartAct(item.id));
-        console.log(item)
+        dispatch(itemStartAct(item.id));
+
+        dispatch(itemFinishAct(item.id));
+
     };
 
     dispatch(startAct());
@@ -157,6 +183,14 @@ export const itemProgressAct = (id: string, val: number): ItemProgressAction => 
         val
     }
 };
+
+export const itemFinishAct = (id: string): ItemFinishAction => {
+    return {
+        type: ActionTypes.ITEM_FINISH,
+        id
+    }
+};
+
 
 
 

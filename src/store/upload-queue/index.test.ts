@@ -4,7 +4,8 @@ import reducer, {
     startAct,
     finishAct,
     itemStartAct,
-    itemProgressAct
+    itemProgressAct,
+    itemFinishAct
 } from "./index";
 
 import {State, initialState} from './types';
@@ -57,6 +58,12 @@ it('7- item progress', () => {
     state = reducer(state, itemProgressAct('image.jpg-10-1589567882559', 11));
     expect(state).toMatchSnapshot();
 });
+
+it('8- item finish', () => {
+    state = reducer(state, itemFinishAct('image.jpg-10-1589567882559'));
+    expect(state).toMatchSnapshot();
+});
+
 
 
 it('52- finish', () => {

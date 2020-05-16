@@ -52,7 +52,7 @@ export interface ItemErrorAction extends BaseAction {
     id: string
 }
 
-export type Action = AddAction | StartAction | FinishAction | ItemDeleteAction | ItemStartAction | ItemProgressAction | ItemFinishAction | ItemErrorAction;
+export type Actions = AddAction | StartAction | FinishAction | ItemDeleteAction | ItemStartAction | ItemProgressAction | ItemFinishAction | ItemErrorAction;
 
 
 export interface Item {

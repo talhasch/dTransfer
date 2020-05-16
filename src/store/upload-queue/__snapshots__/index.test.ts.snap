@@ -159,6 +159,30 @@ Object {
 }
 `;
 
+exports[`8- item finish 1`] = `
+Object {
+  "inProgress": true,
+  "list": Array [
+    Object {
+      "error": "",
+      "id": "image.jpg-10-1589567882559",
+      "obj": File {},
+      "progress": 11,
+      "status": 3,
+      "url": "",
+    },
+    Object {
+      "error": "",
+      "id": "document.pdf-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 1,
+      "url": "",
+    },
+  ],
+}
+`;
+
 exports[`52- finish 1`] = `
 Object {
   "inProgress": false,
@@ -168,7 +192,7 @@ Object {
       "id": "image.jpg-10-1589567882559",
       "obj": File {},
       "progress": 11,
-      "status": 2,
+      "status": 3,
       "url": "",
     },
     Object {
