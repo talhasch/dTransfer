@@ -49,7 +49,8 @@ export interface ItemFinishAction extends BaseAction {
 
 export interface ItemErrorAction extends BaseAction {
     type: ActionTypes.ITEM_ERROR,
-    id: string
+    id: string,
+    message: string
 }
 
 export type Actions = AddAction | StartAction | FinishAction | ItemDeleteAction | ItemStartAction | ItemProgressAction | ItemFinishAction | ItemErrorAction;
@@ -68,7 +69,7 @@ export enum ItemStatus {
     READY = 1,
     IN_PROGRESS = 2,
     DONE = 3,
-    FAILED = 4
+    ERROR = 4
 }
 
 

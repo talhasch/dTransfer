@@ -6,7 +6,8 @@ import reducer, {
     finishAct,
     itemStartAct,
     itemProgressAct,
-    itemFinishAct
+    itemFinishAct,
+    itemErrorAct
 } from "./index";
 
 import {State} from './types';
@@ -65,6 +66,15 @@ it('8- item finish', () => {
     expect(state).toMatchSnapshot();
 });
 
+it('9- item start', () => {
+    state = reducer(state, itemStartAct('document.pdf-10-1589567882559'));
+    expect(state).toMatchSnapshot();
+});
+
+it('10- item error', () => {
+    state = reducer(state, itemErrorAct('document.pdf-10-1589567882559', "Couldn't read file"));
+    expect(state).toMatchSnapshot();
+});
 
 it('52- finish', () => {
     state = reducer(state, finishAct());

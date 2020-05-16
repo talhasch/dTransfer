@@ -183,9 +183,9 @@ Object {
 }
 `;
 
-exports[`52- finish 1`] = `
+exports[`9- item start 1`] = `
 Object {
-  "inProgress": false,
+  "inProgress": true,
   "list": Array [
     Object {
       "error": "",
@@ -200,7 +200,55 @@ Object {
       "id": "document.pdf-10-1589567882559",
       "obj": File {},
       "progress": 0,
-      "status": 1,
+      "status": 2,
+      "url": "",
+    },
+  ],
+}
+`;
+
+exports[`10- item error 1`] = `
+Object {
+  "inProgress": true,
+  "list": Array [
+    Object {
+      "error": "",
+      "id": "image.jpg-10-1589567882559",
+      "obj": File {},
+      "progress": 11,
+      "status": 3,
+      "url": "",
+    },
+    Object {
+      "error": "Couldn't read file",
+      "id": "document.pdf-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 4,
+      "url": "",
+    },
+  ],
+}
+`;
+
+exports[`52- finish 1`] = `
+Object {
+  "inProgress": false,
+  "list": Array [
+    Object {
+      "error": "",
+      "id": "image.jpg-10-1589567882559",
+      "obj": File {},
+      "progress": 11,
+      "status": 3,
+      "url": "",
+    },
+    Object {
+      "error": "Couldn't read file",
+      "id": "document.pdf-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 4,
       "url": "",
     },
   ],

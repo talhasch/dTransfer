@@ -20,7 +20,8 @@ import {
     ItemDeleteAction,
     ItemProgressAction,
     ItemStartAction,
-    ItemFinishAction
+    ItemFinishAction,
+    ItemErrorAction
 } from './types';
 
 export const initialState: State = {
@@ -73,6 +74,14 @@ export default (state: State = initialState, action: Actions): State => {
             const {id} = action;
 
             const newList = list.map(x => x.id === id ? {...x, status: ItemStatus.DONE} : x);
+
+            return {...state, list: [...newList]};
+        }
+        case ActionTypes.ITEM_ERROR: {
+            const {list} = state;
+            const {id, message} = action;
+
+            const newList = list.map(x => x.id === id ? {...x, status: ItemStatus.ERROR, error: message} : x);
 
             return {...state, list: [...newList]};
         }
@@ -163,7 +172,6 @@ export const finishAct = (): FinishAction => {
     }
 };
 
-
 export const itemDeleteAct = (id: string): ItemDeleteAction => {
     return {
         type: ActionTypes.ITEM_DELETE,
@@ -190,6 +198,14 @@ export const itemFinishAct = (id: string): ItemFinishAction => {
     return {
         type: ActionTypes.ITEM_FINISH,
         id
+    }
+};
+
+export const itemErrorAct = (id: string, message: string): ItemErrorAction => {
+    return {
+        type: ActionTypes.ITEM_ERROR,
+        id,
+        message
     }
 };
 
