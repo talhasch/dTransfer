@@ -3,8 +3,8 @@
   padding: 0 12px;
   border-bottom: 1px solid $gray-200;
   background: $gray-100;
-  border-top-left-radius: $border-radius ;
-  border-top-right-radius: $border-radius;
+  max-height: 300px;
+  overflow-x: auto;
 
   .item {
     display: flex;

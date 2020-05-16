@@ -17,14 +17,11 @@ interface UserFormProps {
 export default class Transfer extends Component<UserFormProps> {
     render() {
         const {uploadQueue} = this.props;
-        
+
         return (
             <div className="transfer">
-                <div className="scroll-content">
-                    <Queue {...this.props} />
-                    <UploaderForm {...this.props} />
-                </div>
-
+                <UploaderForm {...this.props} />
+                <Queue {...this.props} />
                 <div className="transfer-action">
                     <Button variant="secondary" disabled={uploadQueue.list.length === 0} className="btn-upload">Upload</Button>
                 </div>
