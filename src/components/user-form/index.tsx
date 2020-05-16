@@ -57,18 +57,18 @@ export default class UserForm extends Component<UserFormProps> {
 
         return (
             <div className="user-form">
-                <div className="upload-form">
-                    <div className="form-controls" onClick={this.openFileInput}>
-                        <div className="button-control">
+                <div className="upload-controls">
+                    <div className="source-selectors" onClick={this.openFileInput}>
+                        <div className="button-file-selector">
                             <Button variant="primary" size="sm">
                                 <img src={plusSvg} alt="Plus"/>
                             </Button>
                         </div>
-                        <div className="text-controls">
-                            <div className="select-file">
+                        <div className="text-selectors">
+                            <div className="text-file-selector">
                                 Add files
                             </div>
-                            <div className="select-folder">
+                            <div className="text-folder-selector">
                                 <a href="#" onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
