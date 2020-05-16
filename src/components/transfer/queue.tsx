@@ -4,6 +4,9 @@ import fileSize from 'filesize';
 
 import {State as UploadQueueState} from '../../store/upload-queue/types';
 
+
+import {closeSvg} from '../../svg';
+
 interface QueueProps {
     uploadQueue: UploadQueueState
 }
@@ -23,7 +26,7 @@ export default class Queue extends Component<QueueProps> {
                     <div className="item-name">{i.obj.name}</div>
                     <div className="item-size">{fileSize(i.obj.size)}</div>
                     <div className="item-controls">
-
+                        <div className="item-control item-control-delete"> {closeSvg}</div>
                     </div>
                 </div>
             })}

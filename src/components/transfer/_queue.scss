@@ -28,23 +28,38 @@
     }
 
     .item-name, .item-size {
-      margin-right: 60px;
+      margin-right: 30px;
     }
 
     .item-controls {
       position: absolute;
       top: 0;
-      right: 0;
+      right: 10px;
       height: 100%;
-      background: red;
+      width: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
 
-
       .item-control {
-        svg {
+        color: $primary;
+        cursor: pointer;
 
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .item-control-delete {
+        display: none;
+      }
+    }
+
+    &:hover {
+      .item-controls {
+        .item-control-delete {
+          display: block;
         }
       }
     }
