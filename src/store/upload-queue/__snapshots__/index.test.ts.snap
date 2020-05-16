@@ -169,7 +169,7 @@ Object {
       "obj": File {},
       "progress": 11,
       "status": 3,
-      "url": "",
+      "url": "https://foo.com/a.png",
     },
     Object {
       "error": "",
@@ -193,7 +193,7 @@ Object {
       "obj": File {},
       "progress": 11,
       "status": 3,
-      "url": "",
+      "url": "https://foo.com/a.png",
     },
     Object {
       "error": "",
@@ -217,7 +217,7 @@ Object {
       "obj": File {},
       "progress": 11,
       "status": 3,
-      "url": "",
+      "url": "https://foo.com/a.png",
     },
     Object {
       "error": "Couldn't read file",
@@ -241,7 +241,7 @@ Object {
       "obj": File {},
       "progress": 11,
       "status": 3,
-      "url": "",
+      "url": "https://foo.com/a.png",
     },
     Object {
       "error": "Couldn't read file",

@@ -62,7 +62,7 @@ it('7- item progress', () => {
 });
 
 it('8- item finish', () => {
-    state = reducer(state, itemFinishAct('image.jpg-10-1589567882559'));
+    state = reducer(state, itemFinishAct('image.jpg-10-1589567882559', 'https://foo.com/a.png'));
     expect(state).toMatchSnapshot();
 });
 

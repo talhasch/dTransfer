@@ -9,19 +9,19 @@ import {upload} from '../../backend';
 import {AppState} from '../index';
 
 import {
-    State,
     Actions,
     ActionTypes,
-    Item,
-    ItemStatus,
     AddAction,
-    StartAction,
     FinishAction,
+    Item,
     ItemDeleteAction,
+    ItemErrorAction,
+    ItemFinishAction,
     ItemProgressAction,
     ItemStartAction,
-    ItemFinishAction,
-    ItemErrorAction
+    ItemStatus,
+    StartAction,
+    State
 } from './types';
 
 export const initialState: State = {
@@ -71,9 +71,9 @@ export default (state: State = initialState, action: Actions): State => {
         }
         case ActionTypes.ITEM_FINISH: {
             const {list} = state;
-            const {id} = action;
+            const {id, url} = action;
 
-            const newList = list.map(x => x.id === id ? {...x, status: ItemStatus.DONE} : x);
+            const newList = list.map(x => x.id === id ? {...x, status: ItemStatus.DONE, url} : x);
 
             return {...state, list: [...newList]};
         }
@@ -102,8 +102,26 @@ export const startUploadQueue = () => async (dispatch: Dispatch, getState: () =>
     const uploadItem = async (item: Item) => {
         dispatch(itemStartAct(item.id));
 
-        dispatch(itemFinishAct(item.id));
+        let buffer;
 
+        try {
+            buffer = await readFileBuffer(item.obj);
+        } catch (e) {
+            dispatch(itemErrorAct(item.id, "Couldn't read file"));
+            return;
+        }
+
+        let url;
+        try {
+            url = await upload(buffer, item.obj.name, (progress) => {
+                dispatch(itemProgressAct(item.id, progress));
+            });
+        } catch (e) {
+            dispatch(itemErrorAct(item.id, 'Upload error'));
+            return;
+        }
+
+        dispatch(itemFinishAct(item.id, url));
     };
 
     dispatch(startAct());
@@ -117,6 +135,9 @@ export const startUploadQueue = () => async (dispatch: Dispatch, getState: () =>
     }
 
     dispatch(finishAct());
+
+    // Couldn't read file
+    // Upload error
 
     /*
     while (true) {
@@ -194,10 +215,11 @@ export const itemProgressAct = (id: string, val: number): ItemProgressAction => 
     }
 };
 
-export const itemFinishAct = (id: string): ItemFinishAction => {
+export const itemFinishAct = (id: string, url: string): ItemFinishAction => {
     return {
         type: ActionTypes.ITEM_FINISH,
-        id
+        id,
+        url
     }
 };
 

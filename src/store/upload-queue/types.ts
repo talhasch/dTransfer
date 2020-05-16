@@ -44,7 +44,8 @@ export interface ItemProgressAction extends BaseAction {
 
 export interface ItemFinishAction extends BaseAction {
     type: ActionTypes.ITEM_FINISH,
-    id: string
+    id: string,
+    url: string
 }
 
 export interface ItemErrorAction extends BaseAction {
