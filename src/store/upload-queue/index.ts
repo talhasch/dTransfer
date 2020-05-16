@@ -2,6 +2,8 @@ import {Dispatch} from 'redux';
 
 import {makeFileId} from '../../helper';
 
+import {AppState} from '../index';
+
 import {Action, ActionTypes, AddAction, initialState, Item, ItemDeleteAction, ItemStatus, StartAction, State} from './types';
 
 export default (state: State = initialState, action: Action): State => {
@@ -37,8 +39,16 @@ export const addToUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => 
     dispatch(addAct(files));
 };
 
-export const startUploadQueue = () => (dispatch: Dispatch) => {
+export const startUploadQueue = () => (dispatch: Dispatch, getState: any) => {
     dispatch(startAct());
+
+
+    while (true) {
+        const {uploadQueue} = getState();
+        console.log(uploadQueue);
+        
+        break;
+    }
 };
 
 export const deleteUploadQueueItem = (id: string) => (dispatch: Dispatch) => {
