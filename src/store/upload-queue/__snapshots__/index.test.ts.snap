@@ -110,3 +110,27 @@ Object {
   ],
 }
 `;
+
+exports[`6- item start 1`] = `
+Object {
+  "inProgress": true,
+  "list": Array [
+    Object {
+      "error": "",
+      "id": "image.jpg-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 2,
+      "url": "",
+    },
+    Object {
+      "error": "",
+      "id": "document.pdf-10-1589567882559",
+      "obj": File {},
+      "progress": 0,
+      "status": 1,
+      "url": "",
+    },
+  ],
+}
+`;

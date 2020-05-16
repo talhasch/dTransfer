@@ -1,10 +1,10 @@
 import {Dispatch} from 'redux';
 
-import {makeFileId} from '../../helper';
+import {makeFileId, readFileBuffer} from '../../helper';
 
 import {AppState} from '../index';
 
-import {Action, ActionTypes, AddAction, initialState, Item, ItemDeleteAction, ItemStatus, StartAction, State} from './types';
+import {Action, ActionTypes, AddAction, initialState, Item, ItemDeleteAction, ItemStartAction, ItemStatus, StartAction, State} from './types';
 
 export default (state: State = initialState, action: Action): State => {
     switch (action.type) {
@@ -27,6 +27,18 @@ export default (state: State = initialState, action: Action): State => {
 
             return {...state, list: [...list.filter(x => x.id !== id)]};
         }
+        case ActionTypes.ITEM_START: {
+            const {list} = state;
+            const {id} = action;
+
+            const newList = list.map(x => {
+                if (x.id !== id) return x;
+
+                return {...x, status: ItemStatus.IN_PROGRESS}
+            });
+
+            return {...state, list: [...newList]};
+        }
         default: {
             return state;
         }
@@ -39,20 +51,24 @@ export const addToUploadQueue = (files: Array<File>) => (dispatch: Dispatch) => 
     dispatch(addAct(files));
 };
 
-export const startUploadQueue = () => (dispatch: Dispatch, getState: any) => {
+export const startUploadQueue = () => async (dispatch: Dispatch, getState: () => AppState) => {
     dispatch(startAct());
 
-
     while (true) {
-        const {uploadQueue} = getState();
-        console.log(uploadQueue);
-        
-        break;
+        const {uploadQueue: queue} = getState();
+        const item = queue.list.find(x => x.status === ItemStatus.READY);
+        if (item === undefined) {
+            break;
+        }
+
+        dispatch(itemStartAct(item.id));
+
+        const buffer = readFileBuffer(item.obj);
     }
 };
 
 export const deleteUploadQueueItem = (id: string) => (dispatch: Dispatch) => {
-    dispatch(deleteItemAct(id));
+    dispatch(itemDeleteAct(id));
 };
 
 /* Action Creators */
@@ -69,10 +85,19 @@ export const startAct = (): StartAction => {
     }
 };
 
-export const deleteItemAct = (id: string): ItemDeleteAction => {
+export const itemDeleteAct = (id: string): ItemDeleteAction => {
     return {
         type: ActionTypes.ITEM_DELETE,
         id
     }
 };
+
+export const itemStartAct = (id: string): ItemStartAction => {
+    return {
+        type: ActionTypes.ITEM_START,
+        id
+    }
+};
+
+
 

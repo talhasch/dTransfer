@@ -65,8 +65,9 @@ export interface Item {
 
 export enum ItemStatus {
     READY = 1,
-    UPLOADING = 2,
-    UPLOADED = 3
+    IN_PROGRESS = 2,
+    DONE = 3,
+    FAILED = 4
 }
 
 
