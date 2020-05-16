@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 
-import {Button} from 'react-bootstrap';
+import {Button, Spinner} from 'react-bootstrap';
 
 import {State as UploadQueueState} from '../../store/upload-queue/types';
 
@@ -17,20 +17,26 @@ interface UserFormProps {
 }
 
 export default class Transfer extends Component<UserFormProps> {
-
     start = () => {
         this.props.startUploadQueue();
     };
 
     render() {
         const {uploadQueue} = this.props;
+        const {inProgress} = uploadQueue;
 
         return (
             <div className="transfer">
                 <UploaderForm {...this.props} />
                 <Queue {...this.props} />
                 <div className="transfer-action">
-                    <Button variant="secondary" disabled={uploadQueue.list.length === 0} className="btn-upload" onClick={this.start}>Upload</Button>
+                    <Button variant="secondary"
+                            disabled={uploadQueue.list.length === 0 || inProgress}
+                            className="btn-upload"
+                            onClick={this.start}>
+                        {inProgress && <div className="loading"><Spinner animation="border" size="sm"/></div>}
+                        Upload
+                    </Button>
                 </div>
             </div>
         )

@@ -15,6 +15,12 @@
 
     .btn-upload {
       margin-left: 52px;
+      display: inline-flex;
+      align-items: center;
+
+      .loading {
+        margin-right: 6px;
+      }
     }
   }
 
