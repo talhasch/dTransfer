@@ -57,7 +57,6 @@ export default class Transfer extends Component<UserFormProps> {
 
     render() {
         const {uploadQueue} = this.props;
-        const buttonDisabled = uploadQueue.list.length === 0;
 
         // @ts-ignore
         const fileInput = <input type="file" id="file-input" multiple onChange={this.fileInputChanged}/>;
@@ -66,35 +65,28 @@ export default class Transfer extends Component<UserFormProps> {
 
         return (
             <div className="transfer">
-                <Queue {...this.props} />
-
-                <div className="upload-controls">
-                    <div className="source-selectors" onClick={this.openFileInput}>
-                        <div className="button-file-selector">
-                            <Button variant="primary" size="sm">
-                                <img src={plusSvg} alt="Plus"/>
-                            </Button>
-                        </div>
-                        <div className="text-selectors">
-                            <div className="text-file-selector">
-                                Add files
-                            </div>
-                            <div className="text-folder-selector">
-                                <a href="#" onClick={(e: React.MouseEvent<HTMLElement>) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    this.openFolderInput();
-                                }}>Or select a folder</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="upload-button">
-                        <Button variant={buttonDisabled ? 'secondary' : 'primary'} disabled={buttonDisabled}>Upload</Button>
+                <div className="scroll-content">
+                    <Queue {...this.props} />
+                    <div className="uploader-form" onClick={this.openFileInput}>
+                        <Button variant="primary" size="sm" className="btn-select-files">
+                            <img src={plusSvg} alt="Plus"/>
+                        </Button>
+                        <h2 className="select-files">
+                            Add files
+                        </h2>
+                        <a className="select-folders" href="#" onClick={(e: React.MouseEvent<HTMLElement>) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.openFolderInput();
+                        }}>Or select folders</a>
                     </div>
                 </div>
-
                 {fileInput}
                 {folderInput}
+
+                <div className="transfer-action">
+                    <Button variant="secondary" disabled={uploadQueue.list.length === 0} className="btn-upload">Upload</Button>
+                </div>
             </div>
         )
     }
