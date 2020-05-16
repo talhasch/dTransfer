@@ -69,7 +69,7 @@ export default class UserForm extends Component<UserFormProps> {
                                 Add files
                             </div>
                             <div className="text-folder-selector">
-                                <a href="#" onClick={(e) => {
+                                <a href="#" onClick={(e: React.MouseEvent<HTMLElement>) => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     this.openFolderInput();
