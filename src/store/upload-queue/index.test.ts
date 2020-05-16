@@ -1,4 +1,5 @@
 import reducer, {
+    initialState,
     addAct,
     itemDeleteAct,
     startAct,
@@ -8,7 +9,7 @@ import reducer, {
     itemFinishAct
 } from "./index";
 
-import {State, initialState} from './types';
+import {State} from './types';
 
 let state: State = initialState;
 
@@ -63,7 +64,6 @@ it('8- item finish', () => {
     state = reducer(state, itemFinishAct('image.jpg-10-1589567882559'));
     expect(state).toMatchSnapshot();
 });
-
 
 
 it('52- finish', () => {
